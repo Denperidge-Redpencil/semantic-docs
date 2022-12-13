@@ -12,7 +12,7 @@ python3 app/index.py
 ### Pros:
 - No Javascript nor server needed! The content will be displayed immediately with no client-side nor server-side rendering required.
 - While currently implemented for GitHub, adapting this for a different host should require minimal effort, as as good as all GitHub specific code is separated in a different file.
-- Using [Repository Webhooks](https://docs.github.com/en/rest/webhooks) the documentation can automatically be updated whenever changed.
+- Using [Repository Webhooks](https://docs.github.com/en/rest/webhooks) the documentation can automatically be updated whenever changed, not even requiring manual intervention when new repositories are added or current repositories are archived/removed.
 - The url changes depending on which documentation you select (although that not being the case in the current docs could also be fixed over time).
 
 ### Cons:
