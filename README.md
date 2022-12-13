@@ -8,7 +8,6 @@ python3 app/index.py
 ```
 
 ## Should this be used?
-(This will not go over cons that can be fixed with more development time. Things like the current lack of styling etc.)
 
 ### Pros:
 - While currently implemented for GitHub, adapting this for a different host should require minimal effort.
@@ -19,6 +18,7 @@ python3 app/index.py
 ### Cons:
 - Not a onepager like the current front-end.
 - It's less in-tune with mu-semtech (having the docs made in Ember feels fitting due to the large adaptation of Ember in the organisation).
+- It currently looks not-very-good to say it lightly, although this can be fixed by implementing the existing styling of the original docs.
 
 ## License
 The documentation imported belongs to [mu-semtech](https://github.com/mu-semtech/). The code I've written is under the [MIT License](LICENSE).
