@@ -8,10 +8,10 @@
 </head>
 <body>
     <nav>
-        {% for type in types_and_repos %}
-            <h2>{{type}}</h2>
-            {% for repo in types_and_repos[type] %}
-                <a href="{{relative_nav|default('', true)}}{{type}}/{{repo}}">{{ repo }}</a>
+        {% for category in dict_category_repos %}
+            <h2>{{category}}</h2>
+            {% for repo in dict_category_repos[category] %}
+                <a href="{{relative_nav|default('', true)}}{{category}}/{{repo}}">{{ repo }}</a>
             {% endfor %}
         {% endfor %}
         <hr>

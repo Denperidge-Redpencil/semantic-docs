@@ -3,8 +3,8 @@ from os import makedirs
 from jinja2 import FileSystemLoader, Environment
 from jinja_markdown import MarkdownExtension
 
-def to_docs(types_and_repos):
-    """Exports dict(key: str(type), value=[Repo...]) into build/*.html"""
+def to_docs(dict_category_repos):
+    """Exports dict(key: str(category), value=[Repo...]) into build/*.html"""
     # Get and create needed dirs
     template_dir = join(realpath(dirname(__file__)), "templates")
     output_dir = realpath(join(dirname(__file__), "..", "build"))
@@ -28,25 +28,25 @@ def to_docs(types_and_repos):
     # Create top-level index.html
     with open(join(output_dir, "index.html"), "w") as index_file:
         index_content = template_index.render(
-            types_and_repos=types_and_repos
+            dict_category_repos=dict_category_repos
         )
         index_file.write(index_content)
     
-    # For every type (ember addons, templates...)
-    for repo_type in types_and_repos:
+    # For every category (ember addons, templates...)
+    for category in dict_category_repos:
         # Get all repos
-        repos = types_and_repos[repo_type]
+        repos = dict_category_repos[category]
 
         # Create the output dir (public/Templates)
-        repo_type_dir = join(output_dir, repo_type)
-        makedirs(repo_type_dir, exist_ok=True)
+        category_dir = join(output_dir, category)
+        makedirs(category_dir, exist_ok=True)
 
-        # And generate a docpage based on the README for every repo in that type
+        # And generate a docpage based on the README for every repo in that category
         for repo in repos:
             readme = repo.get_file("README.md").text
 
-            with open(join(repo_type_dir, repo.name + ".html"), "w") as repo_file:
-                repo_content = template_repo.render(types_and_repos=types_and_repos, relative_nav="../", readme=readme)
+            with open(join(category_dir, repo.name + ".html"), "w") as repo_file:
+                repo_content = template_repo.render(dict_category_repos=dict_category_repos, relative_nav="../", readme=readme)
                 repo_file.write(repo_content)
 
 

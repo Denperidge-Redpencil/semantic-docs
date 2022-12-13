@@ -28,8 +28,8 @@ def file_url_generator(object, filename):
     return "https://raw.githubusercontent.com/{0}/{1}/{2}".format(
             object.full_name, object.default_branch, filename)
 
-def parse_repo_type(repo):
-    """An appendix to Repo.parse_repo_type, but with Github specific api stuff"""
+def parse_category(repo):
+    """An appendix to Repo.parse_category, but with Github specific api stuff"""
     if repo["archived"]:
         return "archive"
     else:
@@ -37,5 +37,5 @@ def parse_repo_type(repo):
     """
     Unused, as mu-project is a template but part of core
     if repo["is_template"]:
-        return repo_types["templates"]
+        return category["templates"]
     """
