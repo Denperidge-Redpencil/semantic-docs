@@ -8,6 +8,10 @@ if __name__ == "__main__":
 
     dict_category_repos = {}
     for category_id in categories:
+        if category_id == categories["archive"].id:
+            print("Skipping archive!")
+            continue
+        
         category = categories[category_id]
         category_repos = [repo for repo in repos if repo.category.id == category_id]
 
