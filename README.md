@@ -14,6 +14,7 @@ A draft for a zero upkeep documentation for [mu-semtech](https://github.com/mu-s
 pip3 install -r requirements.txt
 python3 app/index.py
 ```
+Note: if the server you're using to view the generated .html files doesn't support navigating to /index and instead requires /index.html, you can change the nav generation in the [base](app/templates/base.html) template.
 
 ## Should this be used?
 
