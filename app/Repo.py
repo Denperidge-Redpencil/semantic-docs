@@ -1,4 +1,5 @@
 from re import search, IGNORECASE
+from requests import get
 
 """
 Unused, as mu-project is a template but part of core
@@ -49,6 +50,21 @@ class Repo():
         self.name = json["name"]
         self.type = parse_repo_type(json)
         self.url = json["html_url"]
+        self.full_name = json["full_name"]
+        self.default_branch =json["default_branch"]
+    
+    def get_file_url(self, filename):
+        return "https://raw.githubusercontent.com/{0}/{1}/{2}".format(
+            self.full_name, self.default_branch, filename)
+    
+    def get_file(self, path):
+        if "http" not in path.lower():
+            path = self.get_file_url(path)
+        return get(path)
+    
+    @property
+    def readme(self):
+        return self.get_file("README.md")
     
     def __str__(self) -> str:
         return self.name
