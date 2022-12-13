@@ -1,4 +1,4 @@
-from data_fetch import list_and_parse_repos
+from app.github import list_and_parse_repos
 from Repo import repo_types
 from export import to_docs
 
