@@ -11,7 +11,7 @@ def parse_repo_type(repo):
 def _parse_repo_type_from_name(name):
     for repo_type_name in repo_types:
         repo_type = repo_types[repo_type_name]
-        if repo_type.check(name):
+        if repo_type.check_by_name(name):
             return repo_type
     # Fallback
     return repo_types["tools"]
@@ -22,8 +22,17 @@ class RepoType():
         self.name = name
         self.id = id
         self.regex = regex
+        self.overrides = overrides
     
-    def check(self, param):
+    def check_by_name(self, param):
+        # Don't return search with override!
+        # Regex still has to be run if override doesn't match
+        for override in self.overrides:
+            print(param)
+            print(search(override, param, IGNORECASE))
+            if search(override, param, IGNORECASE):
+                return self
+
         if self.regex:
             return search(self.regex, param, IGNORECASE)
         else:
@@ -50,12 +59,13 @@ class Repo():
         return self.__str__()
 
 
-
+# Sort by override, then specific regex
 repo_types = {
+    "tools": RepoType("Tools", "tools", overrides=[r"mu-cli"]),
+
     "templates": RepoType("Templates", "templates", r".*-template"),
     "microservices": RepoType("Microservices", "microservices", r".*-service"),
     "ember-addons": RepoType("Ember Addons", "ember-addons", r"ember-.*"),
     "core": RepoType("Core", "core", r"mu-.*"),
-    "tools": RepoType("Tools", "tools"),
     "archive": RepoType("Archive", "archive"),
 }
