@@ -11,7 +11,7 @@
         {% for type in types_and_repos %}
             <h2>{{type}}</h2>
             {% for repo in types_and_repos[type] %}
-                <a href="{{type}}/{{repo}}">{{ repo }}</a>
+                <a href="{{relative_nav|default('', true)}}{{type}}/{{repo}}">{{ repo }}</a>
             {% endfor %}
         {% endfor %}
         <hr>

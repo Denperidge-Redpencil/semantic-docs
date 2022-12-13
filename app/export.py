@@ -39,7 +39,7 @@ def to_docs(types_and_repos):
             readme = repo.get_file("README.md").text
 
             with open(join(repo_type_dir, repo.name + ".html"), "w") as repo_file:
-                repo_content = template_repo.render(types_and_repos=types_and_repos, readme=readme)
+                repo_content = template_repo.render(types_and_repos=types_and_repos, relative_nav="../", readme=readme)
                 repo_file.write(repo_content)
 
 
