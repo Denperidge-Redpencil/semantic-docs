@@ -15,10 +15,10 @@ class RepoType():
         return self.name
 
 repo_types = {
-    "core": RepoType("Core", r""),
-    "templates": RepoType("Templates", r""),
-    "microservices": RepoType("Microservices", r""),
-    "ember-addons": RepoType("Ember Addons", r""),
+    "templates": RepoType("Templates", r".*-template"),
+    "microservices": RepoType("Microservices", r".*-service"),
+    "ember-addons": RepoType("Ember Addons", r"ember-.*"),
+    "core": RepoType("Core", r"mu-.*"),
     "tools": RepoType("Tools"),
     "archive": RepoType("Archive"),
 }
@@ -33,8 +33,13 @@ def parse_repo_type(repo):
         return _parse_repo_type_from_name(repo["name"])
 
 def _parse_repo_type_from_name(name):
-    for repo_type in repo_types:
-        print(repo_type)
+    for repo_type_name in repo_types:
+        repo_type = repo_types[repo_type_name]
+        if repo_type.check(name):
+            return repo_type
+    # Fallback
+    return repo_types["tools"]
+
     
     
 
@@ -46,7 +51,6 @@ to the data that is relevant for docs generation
 """
 class Repo():
     def __init__(self, json) -> None:
-        print(json)
         self.name = json["name"]
         self.type = parse_repo_type(json)
         self.url = json["html_url"]
