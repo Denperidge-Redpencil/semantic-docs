@@ -7,7 +7,7 @@ def parse_repo_type(json):
     """When given a repo json, determine the repo type"""
     api_parseable = github.parse_repo_type(json)
     if api_parseable != None:
-        return api_parseable
+        return repo_types[api_parseable]
 
     else:
         for override in overrides:
