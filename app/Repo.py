@@ -1,30 +1,5 @@
 from re import search, IGNORECASE
 
-class RepoType():
-    def __init__(self, name, id, regex=""):
-        self.name = name
-        self.id = id
-        self.regex = regex
-    
-    def check(self, param):
-        if self.regex:
-            return search(self.regex, param, IGNORECASE)
-        else:
-            return None
-    
-    def __str__(self) -> str:
-        return self.name
-
-repo_types = {
-    "templates": RepoType("Templates", "templates", r".*-template"),
-    "microservices": RepoType("Microservices", "microservices", r".*-service"),
-    "ember-addons": RepoType("Ember Addons", "ember-addons", r"ember-.*"),
-    "core": RepoType("Core", "core", r"mu-.*"),
-    "tools": RepoType("Tools", "tools"),
-    "archive": RepoType("Archive", "archive"),
-}
-
-
 def parse_repo_type(repo):
     if repo["archived"]:
         return repo_types["archive"]
@@ -41,9 +16,21 @@ def _parse_repo_type_from_name(name):
     # Fallback
     return repo_types["tools"]
 
-    
-    
 
+class RepoType():
+    def __init__(self, name, id, regex="", overrides=[]):
+        self.name = name
+        self.id = id
+        self.regex = regex
+    
+    def check(self, param):
+        if self.regex:
+            return search(self.regex, param, IGNORECASE)
+        else:
+            return None
+    
+    def __str__(self) -> str:
+        return self.name
 
 
 """
@@ -61,3 +48,14 @@ class Repo():
     
     def __repr__(self) -> str:
         return self.__str__()
+
+
+
+repo_types = {
+    "templates": RepoType("Templates", "templates", r".*-template"),
+    "microservices": RepoType("Microservices", "microservices", r".*-service"),
+    "ember-addons": RepoType("Ember Addons", "ember-addons", r"ember-.*"),
+    "core": RepoType("Core", "core", r"mu-.*"),
+    "tools": RepoType("Tools", "tools"),
+    "archive": RepoType("Archive", "archive"),
+}
