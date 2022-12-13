@@ -1,6 +1,14 @@
 # Semantic Docs
 A draft for a zero upkeep documentation for [mu-semtech](https://github.com/mu-semtech/).
 
+- Leverages API's to grab all public mu-semtech repos.
+- Automatically categorises repos using the mu-semtech naming scheme.
+- Manual overrides are possible to hide or move repos between categories.
+- Grabs and renders repository README's to generate documentation.
+- Easily customisable.
+- Requires no client-side JavaScript nor any non-static hosting.
+- Can be configured to automatically run on repo changes.
+
 ## Usage
 ```bash
 pip3 install -r requirements.txt
