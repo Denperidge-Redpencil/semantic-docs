@@ -1,8 +1,9 @@
 from re import search, IGNORECASE
 
 class RepoType():
-    def __init__(self, name, regex=""):
+    def __init__(self, name, id, regex=""):
         self.name = name
+        self.id = id
         self.regex = regex
     
     def check(self, param):
@@ -15,12 +16,12 @@ class RepoType():
         return self.name
 
 repo_types = {
-    "templates": RepoType("Templates", r".*-template"),
-    "microservices": RepoType("Microservices", r".*-service"),
-    "ember-addons": RepoType("Ember Addons", r"ember-.*"),
-    "core": RepoType("Core", r"mu-.*"),
-    "tools": RepoType("Tools"),
-    "archive": RepoType("Archive"),
+    "templates": RepoType("Templates", "templates", r".*-template"),
+    "microservices": RepoType("Microservices", "microservices", r".*-service"),
+    "ember-addons": RepoType("Ember Addons", "ember-addons", r"ember-.*"),
+    "core": RepoType("Core", "core", r"mu-.*"),
+    "tools": RepoType("Tools", "tools"),
+    "archive": RepoType("Archive", "archive"),
 }
 
 
@@ -56,7 +57,7 @@ class Repo():
         self.url = json["html_url"]
     
     def __str__(self) -> str:
-        return "{0}: {1}".format(self.type, self.name)
+        return self.name
     
     def __repr__(self) -> str:
         return self.__str__()
