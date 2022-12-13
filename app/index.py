@@ -11,13 +11,6 @@ if __name__ == "__main__":
         category = categories[category_id]
         category_repos = [repo for repo in repos if repo.category.id == category_id]
 
-        print(category_id)
-        print("-----")
-        for repo in category_repos:
-            print(repo)
-        print()
-        print()
-
         dict_category_repos[category.name] = category_repos
 
     to_docs(dict_category_repos)

@@ -41,6 +41,11 @@ def to_docs(dict_category_repos):
         category_dir = join(output_dir, category)
         makedirs(category_dir, exist_ok=True)
 
+        print()
+        print()
+        print(category)
+        print("-" * len(category))
+        
         # And generate a docpage based on the README for every repo in that category
         for repo in repos:
             readme = repo.get_file("README.md").text
@@ -48,6 +53,9 @@ def to_docs(dict_category_repos):
             with open(join(category_dir, repo.name + ".html"), "w") as repo_file:
                 repo_content = template_repo.render(dict_category_repos=dict_category_repos, relative_nav="../", readme=readme)
                 repo_file.write(repo_content)
+
+            print(repo)
+
 
 
 
