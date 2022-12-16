@@ -1,6 +1,6 @@
 from github import list_and_parse_repos
 from Repo import categories
-from export import to_docs
+from export import to_html, to_json
 
 if __name__ == "__main__":
     """Get the repos, parse them, sort them by category, export them to build/*.html"""
@@ -17,4 +17,5 @@ if __name__ == "__main__":
 
         dict_category_repos[category.name] = category_repos
 
-    to_docs(dict_category_repos)
+    to_json(dict_category_repos)
+    to_html(dict_category_repos)

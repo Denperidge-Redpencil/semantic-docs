@@ -2,12 +2,20 @@ from os.path import join, realpath, dirname
 from os import makedirs
 from jinja2 import FileSystemLoader, Environment
 from jinja_markdown import MarkdownExtension
+from jsonpickle import encode
 
-def to_docs(dict_category_repos):
+output_dir = realpath(join(dirname(__file__), "..", "build"))
+
+def to_json(dict_category_repos):
+    print(encode(dict_category_repos, unpicklable=False))
+    with open(join(output_dir, "data.json"), "w") as file:
+        file.write(encode(dict_category_repos, unpicklable=False))
+    
+
+def to_html(dict_category_repos):
     """Exports dict(key: str(category), value=[Repo...]) into build/*.html"""
     # Get and create needed dirs
     template_dir = join(realpath(dirname(__file__)), "templates")
-    output_dir = realpath(join(dirname(__file__), "..", "build"))
 
     makedirs(output_dir, exist_ok=True)
 
