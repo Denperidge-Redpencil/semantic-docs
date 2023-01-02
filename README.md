@@ -1,3 +1,7 @@
+**Note:** superceded by [automated-frontend-semantic-works](https://github.com/Denperidge-Redpencil/automated-frontend-semantic-works).
+
+---
+
 # Semantic Docs
 A draft for a zero upkeep documentation for [mu-semtech](https://github.com/mu-semtech/).
 
