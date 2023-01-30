@@ -1,4 +1,6 @@
-**Note:** superceded by [automated-frontend-semantic-works](https://github.com/Denperidge-Redpencil/automated-frontend-semantic-works).
+# Note: Deprecated
+- In terms of its original end functionality (implementing automated documentation in the current semantic.works website): superceded by [automated-frontend-semantic-works](https://github.com/Denperidge-Redpencil/automated-frontend-semantic-works).
+- In terms of its codebase (a Python-based git repo collector), re-written and re-worked into [repo-collector](https://github.com/Denperidge-Redpencil/Repo-Collector)
 
 ---
 
